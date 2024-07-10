@@ -1,5 +1,3 @@
-### Project Name
-
 ## Getting Started
 
 To get started with this project, follow these steps in your terminal:
