@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Text Detail</title>
+</head>
+<body>
+    <h1>Text {{ text.title }} Detail</h1>
+    <p><strong>Text Content:</strong> {{ text.content }}</p>
+
+    <h2>Sentiment Analysis:</h2>
+    {% if sentiment > 0 %}
+        <p>Positive 😊</p>
+    {% elif sentiment < 0 %}
+        <p>Negative 😞</p>
+    {% else %}
+        <p>Neutral 😐</p>
+    {% endif %}
+</body>
+</html>

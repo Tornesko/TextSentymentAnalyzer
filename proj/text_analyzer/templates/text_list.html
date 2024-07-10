@@ -1,0 +1,17 @@
+<html>
+<head>
+    <title>Text List</title>
+</head>
+<body>
+    <h1>Text List</h1>
+    <ul>
+        {% for text in texts %}
+            <li>
+                {{ text.content|truncatechars:50 }} -
+                <a href="{% url 'text_detail' pk=text.pk %}">Details</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'text_input' %}">Add New Text</a>
+</body>
+</html>
