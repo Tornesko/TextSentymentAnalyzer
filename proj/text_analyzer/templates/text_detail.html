@@ -7,13 +7,36 @@
     <h1>Text {{ text.title }} Detail</h1>
     <p><strong>Text Content:</strong> {{ text.content }}</p>
 
-    <h2>Sentiment Analysis:</h2>
-    {% if sentiment > 0 %}
-        <p>Positive 😊</p>
-    {% elif sentiment < 0 %}
-        <p>Negative 😞</p>
+    <h2>Sentiment Analysis Results:</h2>
+
+    <h3>TextBlob:</h3>
+    <p>Score: {{ text.sentiment_textblob }}</p>
+    {% if text.sentiment_textblob > 10 %}
+        <p>Positive 😊 - text.sentiment_textblob</p>
+    {% elif text.sentiment_textblob < 10 %}
+        <p>Negative 😞 - text.sentiment_textblob</p>
     {% else %}
-        <p>Neutral 😐</p>
+        <p>Neutral 😐 - text.sentiment_textblob</p>
+    {% endif %}
+
+    <h3>VADER:</h3>
+    <p>Score: {{ text.sentiment_vader }}</p>
+    {% if text.sentiment_vader > 10 %}
+        <p>Positive 😊 - text.sentiment_vader</p>
+    {% elif text.sentiment_vader < 10 %}
+        <p>Negative 😞 - text.sentiment_vader</p>
+    {% else %}
+        <p>Neutral 😐 - text.sentiment_vader</p>
+    {% endif %}
+
+    <h3>Hugging Face Transformers:</h3>
+    <p>Score: {{ text.sentiment_transformer }}</p>
+    {% if text.sentiment_transformer > 10 %}
+        <p>Positive 😊 - text.sentiment_transformer</p>
+    {% elif text.sentiment_transformer < 10 %}
+        <p>Negative 😞 - text.sentiment_transformer</p>
+    {% else %}
+        <p>Neutral 😐 - text.sentiment_transformer</p>
     {% endif %}
 </body>
 </html>

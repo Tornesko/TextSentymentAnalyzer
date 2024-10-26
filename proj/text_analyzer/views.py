@@ -1,9 +1,11 @@
-# views.py
 from django.shortcuts import render, redirect
 from django.views import View
+from textblob import TextBlob
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+from transformers import pipeline
+
 from .forms import TextForm
 from .models import Text
-from textblob import TextBlob
 
 
 class TextListView(View):
@@ -27,10 +29,27 @@ class TextInputView(View):
             return redirect('text_detail', pk=new_text.pk)
         return render(request, 'text_input.html', {'form': form})
 
-    def analyze_sentiment(self, text):
+    @staticmethod
+    def analyze_sentiment(text):
+        results = {}
+
+        # TextBlob Analysis
         blob = TextBlob(text)
-        sentiment_score = blob.sentiment.polarity
-        return sentiment_score
+        results['textblob'] = blob.sentiment.polarity
+
+        # VADER Analysis
+        analyzer = SentimentIntensityAnalyzer()
+        vader_score = analyzer.polarity_scores(text)
+        results['vader'] = vader_score['compound']
+
+        # Hugging Face Transformers Analysis
+        sentiment_analysis = pipeline("sentiment-analysis")
+        transformer_result = sentiment_analysis(text)
+        transformer_score = transformer_result[0]['score'] if transformer_result[0]['label'] == 'POSITIVE' else - \
+        transformer_result[0]['score']
+        results['transformer'] = transformer_score
+
+        return results
 
 
 class TextDetailView(View):
