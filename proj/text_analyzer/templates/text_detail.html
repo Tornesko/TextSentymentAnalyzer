@@ -11,32 +11,14 @@
 
     <h3>TextBlob:</h3>
     <p>Score: {{ text.sentiment_textblob }}</p>
-    {% if text.sentiment_textblob > 10 %}
-        <p>Positive 😊 - text.sentiment_textblob</p>
-    {% elif text.sentiment_textblob < 10 %}
-        <p>Negative 😞 - text.sentiment_textblob</p>
-    {% else %}
-        <p>Neutral 😐 - text.sentiment_textblob</p>
-    {% endif %}
+    <p>{{ sentiment_interpretations.textblob }} - text.sentiment_textblob</p>
 
     <h3>VADER:</h3>
     <p>Score: {{ text.sentiment_vader }}</p>
-    {% if text.sentiment_vader > 10 %}
-        <p>Positive 😊 - text.sentiment_vader</p>
-    {% elif text.sentiment_vader < 10 %}
-        <p>Negative 😞 - text.sentiment_vader</p>
-    {% else %}
-        <p>Neutral 😐 - text.sentiment_vader</p>
-    {% endif %}
+    <p>{{ sentiment_interpretations.vader }} - text.sentiment_vader</p>
 
     <h3>Hugging Face Transformers:</h3>
     <p>Score: {{ text.sentiment_transformer }}</p>
-    {% if text.sentiment_transformer > 10 %}
-        <p>Positive 😊 - text.sentiment_transformer</p>
-    {% elif text.sentiment_transformer < 10 %}
-        <p>Negative 😞 - text.sentiment_transformer</p>
-    {% else %}
-        <p>Neutral 😐 - text.sentiment_transformer</p>
-    {% endif %}
+    <p>{{ sentiment_interpretations.transformer }} - text.sentiment_transformer</p>
 </body>
 </html>

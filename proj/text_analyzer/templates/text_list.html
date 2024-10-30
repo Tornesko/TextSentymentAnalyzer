@@ -7,6 +7,7 @@
     <ul>
         {% for text in texts %}
             <li>
+                <strong> {{ text.title }} </strong>
                 {{ text.content|truncatechars:50 }} -
                 <a href="{% url 'text_detail' pk=text.pk %}">Details</a>
             </li>
