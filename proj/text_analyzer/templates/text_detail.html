@@ -2,23 +2,34 @@
 <html>
 <head>
     <title>Text Detail</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
-<body>
-    <h1>Text {{ text.title }} Detail</h1>
-    <p><strong>Text Content:</strong> {{ text.content }}</p>
+<body class="bg-light">
+    <div class="container my-5">
+        <h1 class="display-4 text-center mb-4">{{ text.title }} Detail</h1>
+        <div class="card p-4 shadow-sm">
+            <p><strong>Text Content:</strong> {{ text.content }}</p>
 
-    <h2>Sentiment Analysis Results:</h2>
-
-    <h3>TextBlob:</h3>
-    <p>Score: {{ text.sentiment_textblob }}</p>
-    <p>{{ sentiment_interpretations.textblob }} - text.sentiment_textblob</p>
-
-    <h3>VADER:</h3>
-    <p>Score: {{ text.sentiment_vader }}</p>
-    <p>{{ sentiment_interpretations.vader }} - text.sentiment_vader</p>
-
-    <h3>Hugging Face Transformers:</h3>
-    <p>Score: {{ text.sentiment_transformer }}</p>
-    <p>{{ sentiment_interpretations.transformer }} - text.sentiment_transformer</p>
+            <h2 class="mt-4">Sentiment Analysis Results:</h2>
+            <div class="list-group my-3">
+                <div class="list-group-item">
+                    <h3>TextBlob:</h3>
+                    <p>Score: <strong>{{ text.sentiment_textblob }}</strong></p>
+                    <p>{{ sentiment_interpretations.textblob }}</p>
+                </div>
+                <div class="list-group-item">
+                    <h3>VADER:</h3>
+                    <p>Score: <strong>{{ text.sentiment_vader }}</strong></p>
+                    <p>{{ sentiment_interpretations.vader }}</p>
+                </div>
+                <div class="list-group-item">
+                    <h3>Hugging Face Transformers:</h3>
+                    <p>Score: <strong>{{ text.sentiment_transformer }}</strong></p>
+                    <p>{{ sentiment_interpretations.transformer }}</p>
+                </div>
+            </div>
+            <a href="{% url 'text_list' %}" class="btn btn-primary">Back to List</a>
+        </div>
+    </div>
 </body>
 </html>

@@ -7,5 +7,5 @@ class TextForm(forms.ModelForm):
         model = Text
         fields = ('content', 'title')
         widgets = {
-            'content': forms.Textarea(attrs={'rows': 5, 'placeholder': 'Введите текст для анализа...'}),
+            'content': forms.Textarea(attrs={'rows': 5, 'placeholder': 'Enter your text...'}),
         }
